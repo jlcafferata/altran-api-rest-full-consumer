@@ -13,5 +13,5 @@ Mode of use:
 The website is designed to allow access to user or policy information, with the following considerations:
 
 - Before being able to make any query, you must login. The login validates if an authentication token exists, and if not, it creates it (obviously, if the user is valid)
-- Once logged in, you will have access to user queries (through your id or name) or to the policies (through the name of the user name or policy number).
+- Once logged in, you will have access to user queries (through your id or name) or to the policies (through the user name or policy number).
 - The access to the information is restricted to the role of the logged in user, therefore, before carrying out the different consultations, it validates against the roles of users with allowed access. 
