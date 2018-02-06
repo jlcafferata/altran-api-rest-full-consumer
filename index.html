@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Api rest full consumer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/resources/bootstrap.min.css" rel="stylesheet">
+  <script src="js/resources/bootstrap.min.js"></script>
+  <script src="js/resources/underscore-min.js"></script>
+  <script src="js/resources/angular.min.js"></script>
+  <script src="js/resources/lazyload.min.js"></script> 
+  <script src="js/resources/jquery-1.11.3.min.js"></script> 
+  <script src="js/resources/jquery-ui.js"></script> 
+
+  <script src="js/altran.api.module.js"></script>
+  <script src="js/altran.api.services.js"></script>
+  <script src="js/altran.api.controller.js"></script>
+ 
+  
+</head>
+<body ng-app="apiConsumer" ng-controller="apiConsumerController">
+  <div class="container">    
+    <div class="row" ng-show="isNeedToLogin">      
+      <h1>Login</h1>
+      <div class="container-fluid">
+        <form ng-submit="login()" method="post">
+          Name: <input type="text" ng-model="userName" placeholder="user name" size="50"/>
+          Email: <input type="email" ng-model="email" placeholder="your-mail@server.com" size="70"/>
+          <button ng-type="submit">Login </button>
+        </form>
+      </div>
+      <br/>
+      <pre>{{message}}</pre>
+    </div>
+  
+
+    <div class="row" ng-show="!isNeedToLogin"> 
+      <h3>Filter by</h3>
+      <select id="filterBy" ng-model="filterBy">
+        <option value="name">Name</option>
+        <option value="id">User Id</option>
+        <option value="number">Policy number</option>
+      </select>
+      <h3>Value of filter</h3>
+      <input type="text" id="filterValue" ng-model="filterValue" size="70">
+      <button ng-click="filterUser()">Find User Detail</button>
+      <button ng-click="filterPolicies()" ng-show="filterBy!='id'">Find User Policies</button>
+      <br/>
+
+      <div ng-repeat="user in users">
+          {{user.name}}
+          {{user.email}}
+          {{user.id}}
+      </div>
+
+      <div ng-repeat="policy in policies">
+          {{policy.id}}
+          {{policy.amountInsured}}
+          {{policy.inceptionDate}}
+          {{policy.installmentPayment}}
+      </div>
+      
+      <br/>
+      <pre>Users: {{users | json}}</pre>
+      <pre>Policies: {{policies | json}}</pre>
+      <pre>Messages:{{message}}</pre>
+    </div>
+  </div>
+  
+</body>
+</html>
